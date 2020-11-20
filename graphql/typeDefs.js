@@ -28,7 +28,7 @@ module.exports = gql`
   type User {
     id: ID!
     email: String!
-    token: String!
+    token: String! # jwt token
     username: String!
     createdAt: String!
   }

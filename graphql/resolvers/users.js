@@ -49,6 +49,7 @@ module.exports = {
         token,
       };
     },
+
     register: async (
       parent,
       { registerInput: { username, email, password, confirmPassword } },
@@ -62,8 +63,9 @@ module.exports = {
         password,
         confirmPassword
       );
+
       if (!valid) {
-        throw new UserInputError("Error", errors);
+        throw new UserInputError("Errors", { errors });
       }
       const user = await User.findOne({ username });
 

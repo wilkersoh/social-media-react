@@ -1,3 +1,18 @@
+Active server
+
+```bash
+npm run serve
+```
+
+Active client side
+
+```bash
+npm start
+```
+
+# Front End Deploy in netlify
+# Back End Deploy in Heroku
+
 > register
 
 ```graphql
@@ -130,6 +145,36 @@ subscription newPost {
 4. Since it is useContext, we can get the data from **AuthContext**
 
 
+# useMutation from apollo/react-hooks
+
+```javascript
+import { useMutation } from "@apollo/react-hooks";
+
+const [deletePost] = useMutation(DELETE_POST_MUTATION, {
+  update(proxy, result) {
+    setConfirmOpen(false);
+  },
+  variables: {
+    postId: props.id,
+  },
+});
+// update will be trigger when finish deleted
+```
+
+# useQuery
+
+it will be trigger after first mount.
+
+# useMutation example from LikeButton
+
+> client/src/LikeButton
+
+Flow
+1. onClick then trigger **likePost** from useMutation
+2. What the mutation query does? need to check server side **gaphql/resolvers/posts.js**
+3. Inside there, will be save like or unlike and save in database, then return back the post
+4. Actually component will be re-render after update the like. if there has 42 post, then re-render 42 times.
+
 
 Faced Error
 
@@ -141,3 +186,23 @@ Login Or Register using **useMutation** 因為少了 key inside the useForm init
 POST http://localhost:5000/ 400(Bad Request)
 ```
 
+2. GraphQlError: Syntax Error: Expected ":", found name "body".
+
+少了 postId: $postId
+
+```graphql
+const SUBMIT_COMMENT_MUTATION = gql`
+  mutation createComment($postId: String!, $body: String!) {
+    createComment(postId, body: $body) {
+      id
+      comments {
+        id
+        body
+        createdAt
+        username
+      }
+      commentCount
+    }
+  }
+`;
+```

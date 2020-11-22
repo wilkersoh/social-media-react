@@ -10,9 +10,6 @@ Active client side
 npm start
 ```
 
-# Front End Deploy in netlify
-# Back End Deploy in Heroku
-
 > register
 
 ```graphql
@@ -206,3 +203,10 @@ const SUBMIT_COMMENT_MUTATION = gql`
   }
 `;
 ```
+
+# Front End Deploy in netlify
+# Back End Deploy in Heroku
+
+> 5:30:00
+
+[docs](https://www.youtube.com/watch?v=n1mdAPFq2Os&t=10880s)

@@ -10,10 +10,8 @@ export default function LikeButton({ user, post: { id, likes, likeCount } }) {
   useEffect(() => {
     if (user && likes.find((like) => like.username === user.username)) {
       setLiked(true);
-      console.log("inside true");
     } else {
       setLiked(false);
-      console.log("inside flase");
     }
   }, [user, likes]);
 

@@ -27,7 +27,9 @@ module.exports = {
     createPost: async (_, { body }, ctx) => {
       const user = checkAuth(ctx);
 
-      if (body.trim() === "") throw new Error("Post body must not be empty");
+      if (body.trim() === "") {
+        throw new Error("Post body must not be empty");
+      }
 
       const newPost = new Post({
         body,
@@ -68,7 +70,7 @@ module.exports = {
       if (post) {
         if (post.likes.find((like) => like.username === username)) {
           // post already like, unlike it
-          post.likes = post.likes.filter((like) => like.usernmae !== username);
+          post.likes = post.likes.filter((like) => like.username !== username);
         } else {
           // not liked, like post
           post.likes.push({
